@@ -11,7 +11,7 @@ using namespace std;
 
 //-----{ global variables }---------------------------------------------------//
 
-string input_filename = "numbers.txt"; 
+string input_filename = "IntegerArray_example.txt"; 
 //string input_filename = "IntegerArray.txt"; 
 long inversion_count = 0;
 
