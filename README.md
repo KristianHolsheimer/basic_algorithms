@@ -2,7 +2,7 @@
 
 This repo contains the codes of some basic algorithms written in C++. I'm writing these codes as part of an online course about algorithms.
 
-I've been wanting to learn a lower-level computer language for quite some time, which is the reason I'm forcing myself to write in C++. (By the way, by "lower level" I mean lower level compared to Python, which I'm most familiar with.)
+I've been wanting to learn a lower-level computer language for quite some time, which is the reason I'm forcing myself to write in C++. (By the way, by "lower level" I mean lower level compared to Python.)
 
 **Note:** I'm completely new to the world of C++, so any pointers (pun intended) are very much appreciated! So please, feel free to contact me: **kristian.holsheimer@gmail.com**.
 
