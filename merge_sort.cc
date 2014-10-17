@@ -111,6 +111,10 @@ vector<vector<int>> get_numbers (string filename)
 
 //---{ the binary merge-sort operation }--------------------------------------//
 
+// This function takes two vectors and performs the binary merge-sort operation,
+// so it returns a single sorted vector. This function forms the core of the
+// algorithm.
+
 vector<int> merge_sort_binary (vector<int> vec1, vector<int> vec2)
 {
     vector<int> output;
@@ -118,18 +122,23 @@ vector<int> merge_sort_binary (vector<int> vec1, vector<int> vec2)
     int len1=vec1.size(), len2=vec2.size(); // length of vec1 and vec2
     int length = len1 + len2;               // length of the output vector
     
+    
+    // The condition in the following "if" clause is the only tricky bit of
+    // this function. It checks whether or not the next element in output
+    // should come from vec1.
+
     do
     {
         if ( (vec1[i]<=vec2[j] && i<len1) || j==len2 )
         {
-            output.push_back(vec1[i]);
-            i++;
+            output.push_back(vec1[i]);  // take element from vec1
+            i++;                        // advance to next entry in vec1
         }
         else 
         {
-            output.push_back(vec2[j]);
-            j++;
-            inversion_count += len1-i;
+            output.push_back(vec2[j]);  // take element from vec2
+            j++;                        // advance to next entry in vec1
+            inversion_count += len1-i;  // increase number of inversions
         }
 
     }
@@ -152,6 +161,9 @@ vector<int> merge_sort_binary (vector<int> vec1, vector<int> vec2)
 
 //---{ the iterative merge-sort function }------------------------------------//
 
+// This function iteratively applies the binary merge-sort operator to all 
+// consecutive pairs of vectors. (the input is a vector of nested vectors)
+
 vector<vector<int>> merge_sort_iterative (vector<vector<int>> input)
 {
     
@@ -163,12 +175,12 @@ vector<vector<int>> merge_sort_iterative (vector<vector<int>> input)
     for ( int i=0; i<length/2; i++ )
     {
         output.push_back(
-            merge_sort_binary( input[2*i], input[2*i+1] )
-        );
+            merge_sort_binary( input[2*i], input[2*i+1] )   // Append merged
+        );                                                  // vector to output.
     }
     
-    if ( length % 2 )
-        output.push_back(input[length-1]);
+    if ( length % 2 )                       // Append the remaining vector
+        output.push_back(input[length-1]);  // in case # elements is odd.
 
     
     
@@ -193,10 +205,10 @@ vector<int> merge_sort ( vector<vector<int>> input )
     
     vector<vector<int>> output = input;
     
-    while ( output.size() > 1 )
-        output = merge_sort_iterative(output);
+    while ( output.size() > 1 )                 // Recursively apply the 
+        output = merge_sort_iterative(output);  // iterative merge-sort func.
     
-    return output[0];
+    return output[0];           // return the first and only element of output
 }
 
 //----------------------------------------------------------------------------//
