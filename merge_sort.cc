@@ -11,9 +11,48 @@ using namespace std;
 
 //-----{ global variables }---------------------------------------------------//
 
-string input_filename = "IntegerArray_example.txt"; 
-//string input_filename = "IntegerArray.txt"; 
-long inversion_count = 0;
+string input_filename  = "IntegerArray_example.txt"; 
+long   inversion_count = 0;
+
+//----------------------------------------------------------------------------//
+
+
+
+
+
+
+//-----{ function templates }-------------------------------------------------//
+
+vector<vector<int>> get_numbers         ( string                filename    );
+
+vector<int>         merge_sort          ( vector<vector<int>>   input       );
+
+void                print_vector        ( vector<int>           input       );
+void                print_vector_nested ( vector<int>           input       );
+
+//----------------------------------------------------------------------------//
+
+
+
+
+
+
+
+//---{ main }-----------------------------------------------------------------//
+
+int main ()
+{
+    
+    // load the numbers:
+    vector<vector<int>> numbers = get_numbers( input_filename );
+    
+    // sort numbers:
+    merge_sort(numbers);
+
+    // print the number of inversions:
+    cout << inversion_count << endl;
+
+}
 
 //----------------------------------------------------------------------------//
 
@@ -25,62 +64,9 @@ long inversion_count = 0;
 
 
 
-//---{ these functions are just printing shortcuts (unimportant) }------------//
-
-void print_vector_base ( vector<int> input )
-{
-    cout << "{";
-    
-    for (unsigned int i=0; i<input.size(); i++)
-        
-        if (i<input.size()-1)
-            cout << input[i] << ',';
-        else
-            cout << input[i];
-            
-    cout << "}";
-}
 
 
-
-
-
-void print_vector ( vector<int> input )
-{
-    print_vector_base(input);
-    cout << endl;
-}
-
-
-
-
-
-void print_vector_embedded ( vector<vector<int>> input )
-{
-    cout << "{ ";
-    
-    for (unsigned int i=0; i<input.size(); i++)
-    {
-        print_vector_base(input[i]);
-        
-        if (i<input.size()-1)
-            cout << ", ";
-        else
-            cout << "";
-        
-    }
-
-    cout << " }" << endl;
-}
-
-//----------------------------------------------------------------------------//
-
-
-
-
-
-
-
+//==={ FUNCTION DEFINITIONS }=================================================//
 
 
 
@@ -88,10 +74,10 @@ void print_vector_embedded ( vector<vector<int>> input )
 
 //---{ load the data as a vector of integers }--------------------------------//
 
-vector<int> getNumbers (string filename)
+vector<vector<int>> get_numbers (string filename)
 {
     ifstream file ( filename );
-    vector<int> numbers;
+    vector<vector<int>> numbers;
     
     // check whether the file is open:
     if ( !file.is_open() ) 
@@ -101,9 +87,9 @@ vector<int> getNumbers (string filename)
     else 
     {
         int number;
-        while (file >> number)
+        while (file >> number)              // read line from file
         {
-            numbers.push_back(number);
+            numbers.push_back({number});    // append to vector
         }
         
         file.close();
@@ -123,51 +109,7 @@ vector<int> getNumbers (string filename)
 
 
 
-
-
-//---{ partition into a vector of ordered integer doublets }------------------//
-
-vector<vector<int>> partition (vector<int> input)
-{
-    vector<vector<int>> output;
-    bool odd_length = input.size() % 2;
-        
-    // prepend "-1" if the length of the vector is odd:
-    if (odd_length)
-        output.push_back( {input[0]} );
-    
-    // split up in terms of vector of 2D arrays:
-    for (unsigned int i=odd_length; i<input.size(); i += 2)
-    {
-        if (input[i] > input[i+1])
-        {
-            output.push_back( { input[i+1], input[i] } );
-            inversion_count++;
-        }
-        else
-        {
-            output.push_back( { input[i], input[i+1] } );
-        }
-    }
-
-    return output;
-}
-
-//----------------------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-
-
-//---{ the main merge_sort function }-----------------------------------------//
+//---{ the binary merge-sort operation }--------------------------------------//
 
 vector<int> merge_sort_binary (vector<int> vec1, vector<int> vec2)
 {
@@ -208,12 +150,9 @@ vector<int> merge_sort_binary (vector<int> vec1, vector<int> vec2)
 
 
 
+//---{ the iterative merge-sort function }------------------------------------//
 
-
-
-//---{ the recursive merge_sort function }------------------------------------//
-
-vector<vector<int>> merge_sort_recursive (vector<vector<int>> input)
+vector<vector<int>> merge_sort_iterative (vector<vector<int>> input)
 {
     
     vector<vector<int>> output;
@@ -246,20 +185,16 @@ vector<vector<int>> merge_sort_recursive (vector<vector<int>> input)
 
 
 
+//---{ the recursive merge-sort call }----------------------------------------//
 
-
-
-
-//---{ the overall wrapper }--------------------------------------------------//
-
-vector<int> sort ( vector<int> input )
+vector<int> merge_sort ( vector<vector<int>> input )
 {
     inversion_count = 0;
     
-    vector<vector<int>> output = partition(input);
+    vector<vector<int>> output = input;
     
     while ( output.size() > 1 )
-        output = merge_sort_recursive(output);
+        output = merge_sort_iterative(output);
     
     return output[0];
 }
@@ -275,21 +210,47 @@ vector<int> sort ( vector<int> input )
 
 
 
+//---{ these functions are just printing shortcuts (unimportant) }------------//
 
-//---{ main }-----------------------------------------------------------------//
-
-int main ()
+void print_vector_base ( vector<int> input )
 {
+    cout << "{";
     
-    // load the numbers:
-    vector<int> numbers = getNumbers( input_filename );
+    for (unsigned int i=0; i<input.size(); i++)
+        
+        if (i<input.size()-1)
+            cout << input[i] << ',';
+        else
+            cout << input[i];
+            
+    cout << "}";
+}
+
+
+
+void print_vector ( vector<int> input )
+{
+    print_vector_base(input);
+    cout << endl;
+}
+
+
+
+void print_vector_nested ( vector<vector<int>> input )
+{
+    cout << "{ ";
     
-    // sort numbers:
-    numbers = sort(numbers);
+    for (unsigned int i=0; i<input.size(); i++)
+    {
+        print_vector_base(input[i]);
+        
+        if (i<input.size()-1)
+            cout << ", ";
+        else
+            cout << "";
+    }
 
-    // print the number of inversions:
-    cout << inversion_count << endl;
-
+    cout << " }" << endl;
 }
 
 //----------------------------------------------------------------------------//
