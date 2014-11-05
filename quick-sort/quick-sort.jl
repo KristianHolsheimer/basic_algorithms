@@ -1,5 +1,5 @@
 # load the txt file:
-numbers = readdlm("QuickSort.txt",'\n',Int) # notice transposition
+numbers = readdlm("QuickSort_example.txt",'\n',Int) # notice transposition
 
 # initialize the 'count' of the number of comparisons:
 count = 0
