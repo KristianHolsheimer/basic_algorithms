@@ -49,10 +49,11 @@ end
 
 ## load the data:
 
-graph = readdlm("kargerMinCut.txt", '\n')
+graph = readdlm("graph.txt", '\n')
 graph = map(line -> map(parseint, split(line,'\t')), graph)
 graph = [arr[1] => arr[2:end] for arr in graph]
 
+println(graph)
 
 
 ## show number of vertices and edges
