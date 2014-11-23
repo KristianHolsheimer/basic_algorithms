@@ -41,8 +41,12 @@ while e:
     for i in g[n]:                                  # iterate over all nodes adjacent to new node n
         e[(n,i)] = g[n][i] + l[n]                   # add new cross edges to e
 
-    e = {k:v for k,v in e.items() if k[1] != n}     # remove redundant edges connecting two seen nodes
+    print({k:v for k,v in e.items() if k[1] != n})
+    print({k:v for k,v in e.items() if k[1] not in l})
+    e = {k:v for k,v in e.items() if k[1] not in l}     # remove redundant edges connecting two seen nodes
 
+    print([i for i in l])
+    print(n)
 
 
 print(l)
