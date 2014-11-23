@@ -36,12 +36,12 @@ for i in g[n]:
 while e:
     emin = min(e, key=e.get)                        # get minimum edge
     n = emin[1]                                     # set current node accordingly
-    l[n] = e.pop(emin)								# set corresponding path length (and remove edge from e)
+    l[n] = e.pop(emin)                              # set corresponding path length (and remove edge from e)
 
-    for i in g[n]:									# iterate over all nodes adjacent to new node n
-        e[(n,i)] = g[n][i] + l[n]					# add new cross edges to e
+    for i in g[n]:                                  # iterate over all nodes adjacent to new node n
+        e[(n,i)] = g[n][i] + l[n]                   # add new cross edges to e
 
-    e = {k:v for k,v in e.items() if k[1] != n} 	# remove redundant edges connecting two seen nodes
+    e = {k:v for k,v in e.items() if k[1] != n}     # remove redundant edges connecting two seen nodes
 
 
 
