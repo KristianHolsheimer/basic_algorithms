@@ -29,7 +29,7 @@ def graph_dict(edges, reverse=False):
 
 ################################################################################
 
-with open("SCC.txt", "r") as f:
+with open("simple.txt", "r") as f:
         edges = []
         for line in f:
             edge = tuple(map(int, line.split()))
