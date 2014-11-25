@@ -1,12 +1,20 @@
-# Basic Algorithms written in C++
+# Basic Algorithms written in C++, Haskell, Julia, Python and Mathematica
 
-This repo contains the codes of some basic algorithms written in C++. I'm writing these codes as part of an online course about algorithms.
+This repo contains the codes of some basic algorithms written in C++, Haskell, Julia, Python and Mathematica. I'm writing these codes as part of an online course about algorithms.
 
-I've been wanting to learn a lower-level computer language for quite some time, which is the reason I'm forcing myself to write in C++. (By the way, by "lower level" I mean lower level compared to Python.)
+When I finished my PhD in string theory I switched to data science, which is why I'm learning these algorithms. In order to make things interesting, I decided to simultaneously explore several different computer languages.
 
-**Note:** I'm completely new to the world of C++, so any pointers (pun intended) are very much appreciated! So please, feel free to contact me: **kristian.holsheimer@gmail.com**.
+**Note:** I'm completely new to these computer languages, so any pointers (pun intended) are very much appreciated! So please, feel free to contact me: **kristian.holsheimer@gmail.com**.
 
 
 ## Contents
 
-* **merge_sort.cc**: This algorithm takes an unsorted list of *n* integers and returns its sorted version in *O*(*n* log *n*) time. As a perk, my implementation of the algorithm also keeps track of the *number of inversions* required.
+* **merge-sort**: This algorithm takes an unsorted list of *n* integers and returns its sorted version in *O*(*n* log *n*) time. As a perk, my *C++* and *Julia* implementation of the algorithm also keeps track of the *number of inversions* required. Other languages I wrote this algorithm in are *Mathematica* and *Haskell*.
+
+* **quick-sort**: Like merge-sort, quick-sort takes an unsorted list of *n* integers and returns its sorted version in *O*(*n* log *n*) time (although quick-sort is quicker on average). The *Julia* implementation of the algorithm also keeps track of the *number of comparisons* required. I also wrote this algorithm in *Haskell*.
+
+* **min-cut**: This algorithm takes a graph and returns the size of a *minimal cut* based on repeated applications of *random-cut*, which is based on random contractions of edges. I wrote this in *Julia* again.
+
+* **scc**: This algorithm takes a directed graph and returns its *strongly connected components*. I wrote this in *Python 3* in two different ways: iterative and recursive. The recursive version looks nicer, but it suffers from stack overflow when the graph becomes too large. The iterative version works, but it's a bit slow. I plan to write an efficient recursive implementation in Haskell, which has tail-call optimization (unlike Python).
+ 
+* **dijkstra**: This algorithm takes an undirected graph (whose edges have non-negative lengths) and returns all the shortest paths from some base node. I wrote this *Python 3*.
