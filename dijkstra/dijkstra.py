@@ -1,12 +1,5 @@
 #!/usr/bin/python3
 
-# load the graph:
-g = {}
-with open('simple.txt', 'r') as f:
-    for l in f:
-        l = l.split()
-        g[int(l[0])] = dict(list(map(lambda s: tuple(map(int, s.split(','))), l[1:])))
-
 
 ####  LEGEND:  #################################################################
 ## 
@@ -27,10 +20,20 @@ with open('simple.txt', 'r') as f:
 ##
 ################################################################################
 
+
+# load the graph:
+g = {}
+with open('simple.txt', 'r') as f:
+    for l in f:
+        l = l.split()
+        g[int(l[0])] = dict(list(map(lambda s: tuple(map(int, s.split(','))), l[1:])))
+
+
 # initialize starting node:
 l, n, e = {1: 0}, 1, {}
 for i in g[n]:
     e[(n,i)] = g[n][i] + l[n]
+
 
 # the main loop
 while e:
