@@ -1,10 +1,10 @@
 # Basic Algorithms written in C++, Haskell, Julia, Python and Mathematica
 
-This repo contains the codes of some basic algorithms written in C++, Haskell, Julia, Python and Mathematica. I'm writing these codes as part of an online course about algorithms.
+This repo contains the codes of some basic algorithms written in C++, Haskell, Julia, Python and Mathematica. I wrote these codes as part of an online course about algorithms.
 
-When I finished my PhD in string theory I switched to data science, which is why I'm learning these algorithms. In order to make things interesting, I decided to simultaneously explore several different computer languages.
+I learned these algorithms as part of my transition from theoretical physics (string theory) to data science. To make things interesting, I decided to simultaneously explore several different computer languages.
 
-**Note:** I'm completely new to these computer languages, so any pointers (pun intended) are very much appreciated! So please, feel free to contact me: **kristian.holsheimer@gmail.com**.
+**Note:** I was completely new to many of these languages, so any pointers (pardon the pun) are very much appreciated! So please, feel free to contact me: **kristian.holsheimer@gmail.com**.
 
 
 ## Contents
